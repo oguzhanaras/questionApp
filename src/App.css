@@ -1,7 +1,60 @@
 #root {
     display: flex;
     align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.title {
+    margin: 50px;
+}
+
+.intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.intro ul {
+    margin-top: 30%;
+}
+
+.intro ul li {
+    font-size: 18px;
+    font-weight: 600;
+    list-style: none;
+    margin: 1rem;
+}
+
+.intro button {
+    text-align: center;
+    background-color: rgba(14, 111, 124, 0.418);
+    border: none;
+    height: 35px;
+    width: 70%;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10%;
+}
+
+.question-finish {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: azure;
+}
+
+.question-finish h2 {
+    font-size: 80px;
+    font-weight: 900;
+    margin-bottom: 30px;
+}
+
+.question-finish p {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 30px;
+
 }

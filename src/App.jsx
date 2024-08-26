@@ -10,16 +10,18 @@ function App() {
     return <Question questions={questions} />;
   } else {
     return (
-      <div>
-        <h1>Question App</h1>
-        <ul>
-          <li>Test 10 sorudan oluşmaktadır.</li>
-          <li>Her soru için 30 saniyeniz vardır.</li>
-          <li>Soru ekrana geldikten 4 saniye sonra şıkları görebilirsiniz ve geri sayım başlar.</li>
-          <li>Tüm sorular bitince doğru cevap sayınız sonuç ekranında gösterilecektir.</li>
-        </ul>
-        <button id='start' onClick={() => setGameActive(true)}>Teste Başla</button>
-      </div>
+      <>
+        <h1 className='title'>Question App</h1>
+        <div className='intro'>
+          <ul>
+            <li>Test 10 sorudan oluşmaktadır.</li>
+            <li>Her soru için 30 saniyeniz vardır.</li>
+            <li>Soru ekrana geldikten 4 saniye sonra şıkları görebilirsiniz ve geri sayım başlar.</li>
+            <li>Tüm sorular bitince doğru cevap sayınız sonuç ekranında gösterilecektir.</li>
+          </ul>
+          <button id='start' onClick={() => setGameActive(true)}>Teste Başla</button>
+        </div>
+      </>
     );
   }
 }

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import './Question.css';
 
 const Question = ({ questions }) => {
     const [questionIndex, setQuestionIndex] = useState(0);
@@ -65,36 +66,41 @@ const Question = ({ questions }) => {
 
     if (isFinished) {
         return (
-            <div>
+            <div className='question-finish'>
                 <h2>Test Bitti!</h2>
-                <p>Sonuçlarınız: {trueAnswer} doğru cevap.</p>
+                <p>Sonuç: {trueAnswer} doğru cevap.</p>
             </div>
         );
     }
 
     return (
-        <div>
-            <img src={ "/pictures/" + questions[questionIndex].media} alt="" />
-            <h2>{questions[questionIndex].question}</h2>
+        <div className='question-area'>
+            <img className='question-image' src={ "/pictures/" + questions[questionIndex].media} alt="" />
+            <h2 className='question-title'>{questions[questionIndex].question}</h2>
             {showOptions && (
                 <>
-                    <form onSubmit={handleNextQuestion}>
-                        {questions[questionIndex].options.map((option, index) => (
-                            <label key={index}>
-                                <input 
-                                    type="radio" 
-                                    name="question" 
-                                    value={option} 
-                                    onChange={handleAnswerChange} 
-                                    checked={selectedAnswer === option}
-                                />
-                                {option}
-                            </label>
-                        ))}
-                        <button type="submit">Gönder</button>
-                    </form>
-                    <div>
-                        <p>Geri Sayım: {timer} saniye</p>
+                    <div className='question-body'>
+                        <div className='timer'>
+                            <p>Geri Sayım: {timer} saniye</p>
+                        </div>
+                        <div>
+                            <form onSubmit={handleNextQuestion}>
+                                {questions[questionIndex].options.map((option, index) => (
+                                    <label className='question-label' key={index}>
+                                        <input
+                                            className='question-radio'
+                                            type="radio" 
+                                            name="question" 
+                                            value={option} 
+                                            onChange={handleAnswerChange} 
+                                            checked={selectedAnswer === option}
+                                        />
+                                        {option}
+                                    </label>
+                                ))}
+                                <button type="submit">Gönder</button>
+                            </form>
+                        </div>
                     </div>
                 </>
             )}
