@@ -1,3 +1,3 @@
-When you say start the test, after 4 seconds, the picture of the question, the title, the countdown and the send button with the answers appear. When you press send, it switches to the next question and shows your correct number at the end.
+When you start the quiz, after 4 seconds the submit button appears with the picture of the question, the title, the countdown and the answers. When you press submit, you will move on to the next question or when the test is over, you will be greeted with a screen showing the number of correct answers, which question you answered and the correct answer to that question.
 
 live link: https://questionapp-react.netlify.app/

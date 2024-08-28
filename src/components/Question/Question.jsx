@@ -7,11 +7,11 @@ const Question = ({ questions }) => {
     const [trueAnswer, setTrueAnswer] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [showOptions, setShowOptions] = useState(false);
-    const [timer, setTimer] = useState(30); // 30 saniye geri sayma
-    const [isTimerActive, setIsTimerActive] = useState(false); // timer aktif mi kontrol et
+    const [timer, setTimer] = useState(30);
+    const [isTimerActive, setIsTimerActive] = useState(false);
+    const [userAnswers, setUserAnswers] = useState([]); 
 
     useEffect(() => {
-        // timerı başlat
         let countdown;
         if (isTimerActive) {
             countdown = setInterval(() => {
@@ -19,20 +19,17 @@ const Question = ({ questions }) => {
                     setTimer((prevTimer) => prevTimer - 1);
                 } else {
                     clearInterval(countdown);
-                    handleNextQuestion(); // süre bitince sıradaki sorya geç
+                    handleNextQuestion(); 
                 }
-            }, 1000); // geri sasyım için her saniye guncelleme
+            }, 1000); 
         }
-
-        // geri sayım temizleme
         return () => clearInterval(countdown);
     }, [timer, isTimerActive, questionIndex]);
 
     useEffect(() => {
-        // cevapları ve butonu belirtilen sure sonunda goster
         const showOptionsTimer = setTimeout(() => {
             setShowOptions(true);
-            setIsTimerActive(true); // timerı baslat
+            setIsTimerActive(true);
         }, 4000);
 
         return () => clearTimeout(showOptionsTimer);
@@ -43,12 +40,17 @@ const Question = ({ questions }) => {
             event.preventDefault();
         }
 
-        // doğru cevab kontrol
+        const userAnswer = {
+            question: questions[questionIndex].question,
+            selectedAnswer: selectedAnswer,
+            correctAnswer: questions[questionIndex].answer,
+        };
+        setUserAnswers((prevAnswers) => [...prevAnswers, userAnswer]);
+
         if (selectedAnswer === questions[questionIndex].answer) {
             setTrueAnswer((prevTrueAnswer) => prevTrueAnswer + 1);
         }
 
-        // son soruya gelince finished true olur ve test biter
         if (questionIndex + 1 === questions.length) {
             setIsFinished(true);
         } else {
@@ -67,15 +69,25 @@ const Question = ({ questions }) => {
     if (isFinished) {
         return (
             <div className='question-finish'>
-                <h2>Test Bitti!</h2>
-                <p>Sonuç: {trueAnswer} doğru cevap.</p>
+                <h2 className='finish-title'>Test Bitti!</h2>
+                <p className='finish-result'>Sonuç: {trueAnswer} doğru cevap.</p>
+                <h3 className='finish-answers-title'>Cevaplarınız:</h3>
+                <ul className='finish-answers-list'>
+                    {userAnswers.map((answer, index) => (
+                        <li key={index} className='finish-answer-item'>
+                            <strong>Soru:</strong> {answer.question} <br />
+                            <strong>Verilen Cevap:</strong> {answer.selectedAnswer || "Cevap verilmedi"} <br />
+                            <strong>Doğru Cevap:</strong> {answer.correctAnswer}
+                        </li>
+                    ))}
+                </ul>
             </div>
         );
     }
 
     return (
         <div className='question-area'>
-            <img className='question-image' src={ "/pictures/" + questions[questionIndex].media} alt="" />
+            <img className='question-image' src={"/pictures/" + questions[questionIndex].media} alt="" />
             <h2 className='question-title'>{questions[questionIndex].question}</h2>
             {showOptions && (
                 <>

@@ -4,8 +4,9 @@
     align-items: center;
     justify-content: start;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     position: relative;
+    background-color: #f0f8ff; /* Arka plan rengini buraya da uygulayın */
 }
 
 .question-image {
@@ -59,4 +60,39 @@
     border-radius: 20px;
     width: 30%;
     cursor: pointer;
+}
+
+.question-finish {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f0f8ff;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.question-finish ul {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.question-finish li {
+    background-color: #e6f7ff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex-basis: calc(33.333% - 20px);
+    min-width: 200px;
+    box-sizing: border-box;
 }
