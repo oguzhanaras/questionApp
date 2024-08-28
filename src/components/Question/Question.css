@@ -10,8 +10,8 @@
 }
 
 .question-image {
-    width: 50%;
-    height: 50%;
+    width: 40%;
+    height: 40%;
     margin: 40px;
     border-radius: 20px;
     object-fit: cover;
